@@ -1,0 +1,22 @@
+[info]
+title=Column Marks
+desc=Commands to work with additional margins (options "margin", "margin_string")
+type=cudatext-plugin
+subdir=cuda_column_marks
+homepage=https://github.com/CudaText-addons/cuda_column_marks
+
+[item1]
+section=commands
+caption=Column Marks\Set marks...
+method=set_marks
+
+[item2]
+section=commands
+caption=Column Marks\Jump left
+method=jump_left
+
+[item3]
+section=commands
+caption=Column Marks\Jump right
+method=jump_right
+
