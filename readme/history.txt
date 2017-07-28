@@ -1,4 +1,8 @@
 
+2017.07.28
++ add command: "Set fixed margin"
+* rename command: "Set additional margins"
+
 2017.07.25
 + adapt to lines with tab-chars (jump to vertical margin line)
 

@@ -48,9 +48,16 @@ class Command:
     def jump_right(self):
         do_jump(True)
 
-    def set_marks(self):
+    def set_margin(self):
+        s = str(ed.get_prop(PROP_MARGIN))
+        s = dlg_input('Fixed margin:', s)
+        if s is None: return
+        ed.set_prop(PROP_MARGIN, s)
+        ed_bro.set_prop(PROP_MARGIN, s)
+
+    def set_margins(self):
         s = ed.get_prop(PROP_MARGIN_STRING)
-        s = dlg_input('Column marks (space separated):', s)
+        s = dlg_input('Additional margins (space separated):', s)
         if s is None: return
         ed.set_prop(PROP_MARGIN_STRING, s)
         ed_bro.set_prop(PROP_MARGIN_STRING, s)

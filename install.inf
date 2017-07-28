@@ -7,15 +7,20 @@ homepage=https://github.com/CudaText-addons/cuda_column_marks
 
 [item1]
 section=commands
-caption=Column Marks\Set marks...
-method=set_marks
+caption=Column Marks\Set fixed margin...
+method=set_margin
 
 [item2]
+section=commands
+caption=Column Marks\Set additional margins...
+method=set_margins
+
+[item5]
 section=commands
 caption=Column Marks\Jump left
 method=jump_left
 
-[item3]
+[item6]
 section=commands
 caption=Column Marks\Jump right
 method=jump_right

@@ -6,9 +6,9 @@ CudaText has 2 options:
 
 plugin reads all these margins, and gives commands:
 
-- Set marks: prompts for additional margins on the fly, so no need
-  to change option margin_string. can enter empty string to remove
-  additional margins.
+- Set fixed margin: prompts for value of fixed margin (no need to change config).
+- Set additional margins: prompts for additional margins (no need to change config).
+  Can enter empty string to remove additional margins.
 - Jump left: puts caret (needs single caret) on the lefter margin (or column 0).
 - Jump right: puts caret on the righter margin.
 
