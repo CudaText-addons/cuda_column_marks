@@ -1,4 +1,5 @@
 from cudatext import *
+import cudax_lib as apx
 
 def do_jump(is_next):
     carets = ed.get_carets()
@@ -53,11 +54,11 @@ class Command:
         s = dlg_input('Fixed margin:', s)
         if s is None: return
         ed.set_prop(PROP_MARGIN, s)
-        ed_bro.set_prop(PROP_MARGIN, s)
+        apx.set_opt('margin', s)
 
     def set_margins(self):
         s = ed.get_prop(PROP_MARGIN_STRING)
         s = dlg_input('Additional margins (space separated):', s)
         if s is None: return
         ed.set_prop(PROP_MARGIN_STRING, s)
-        ed_bro.set_prop(PROP_MARGIN_STRING, s)
+        apx.set_opt('margin_string', s)
