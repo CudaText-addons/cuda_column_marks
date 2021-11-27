@@ -41,6 +41,14 @@ def do_jump(is_next):
     ed.set_caret(x, y, x2, y2)
     msg_status('Jumped to column %d' % x)
 
+def ed_bro(ed):
+    h_self = ed.get_prop(PROP_HANDLE_SELF)
+    h_pri = ed.get_prop(PROP_HANDLE_PRIMARY)
+    h_sec = ed.get_prop(PROP_HANDLE_SECONDARY)
+    if h_self==h_pri:
+        return Editor(h_sec)
+    else:
+        return Editor(h_pri)
 
 class Command:
     def jump_left(self):
@@ -54,6 +62,7 @@ class Command:
         s = dlg_input('Fixed margin:', s)
         if s is None: return
         ed.set_prop(PROP_MARGIN, s)
+        ed_bro(ed).set_prop(PROP_MARGIN, s)
         apx.set_opt('margin', s)
 
     def set_margins(self):
@@ -61,4 +70,5 @@ class Command:
         s = dlg_input('Additional margins (space separated):', s)
         if s is None: return
         ed.set_prop(PROP_MARGIN_STRING, s)
+        ed_bro(ed).set_prop(PROP_MARGIN_STRING, s)
         apx.set_opt('margin_string', s)

@@ -1,4 +1,8 @@
 
+2021.11.27
++ add: plugin saves settings to user.json (thanks @newhoa)
+- fix: plugin used old deleted API
+
 2017.07.28
 + add command: "Set fixed margin"
 * rename command: "Set additional margins"
