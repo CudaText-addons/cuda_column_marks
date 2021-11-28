@@ -1,5 +1,6 @@
 from cudatext import *
 import cudax_lib as apx
+import cudatext_cmd as cmds
 
 def do_jump(is_next):
     carets = ed.get_carets()
@@ -63,7 +64,8 @@ class Command:
         if s is None: return
         ed.set_prop(PROP_MARGIN, s)
         ed_bro(ed).set_prop(PROP_MARGIN, s)
-        apx.set_opt('margin', s)
+        apx.set_opt('margin', int(s))
+        ed.cmd(cmds.cmd_OpsReloadAndApply)
 
     def set_margins(self):
         s = ed.get_prop(PROP_MARGIN_STRING)
@@ -72,3 +74,4 @@ class Command:
         ed.set_prop(PROP_MARGIN_STRING, s)
         ed_bro(ed).set_prop(PROP_MARGIN_STRING, s)
         apx.set_opt('margin_string', s)
+        ed.cmd(cmds.cmd_OpsReloadAndApply)
