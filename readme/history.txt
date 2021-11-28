@@ -1,4 +1,7 @@
 
+2021.11.28
++ add: improved prompt dialog which allows to prefix value with "!" to save option for good (thanks @newhoa)
+
 2021.11.27
 + add: plugin saves settings to user.json (thanks @newhoa)
 - fix: plugin used old deleted API

@@ -1,5 +1,6 @@
 from cudatext import *
 import cudax_lib as apx
+import cudatext_cmd as cmds
 
 def do_jump(is_next):
     carets = ed.get_carets()
@@ -58,17 +59,35 @@ class Command:
         do_jump(True)
 
     def set_margin(self):
-        s = str(ed.get_prop(PROP_MARGIN))
-        s = dlg_input('Fixed margin:', s)
+        s = ed.get_prop(PROP_MARGIN)
+        s = dlg_input('Fixed margin value.\nPrefix with "!" to save permamently.', str(s))
         if s is None: return
-        ed.set_prop(PROP_MARGIN, s)
-        ed_bro(ed).set_prop(PROP_MARGIN, s)
-        apx.set_opt('margin', s)
+        save = s.startswith('!')
+        if save:
+            s = s[1:]
+
+        try:
+            n = int(s)
+            ed.set_prop(PROP_MARGIN, n)
+            ed_bro(ed).set_prop(PROP_MARGIN, n)
+        except:
+            return msg_status('Wrong integer value: '+s)
+
+        if save:
+            apx.set_opt('margin', n)
+            ed.cmd(cmds.cmd_OpsReloadAndApply)
 
     def set_margins(self):
         s = ed.get_prop(PROP_MARGIN_STRING)
-        s = dlg_input('Additional margins (space separated):', s)
+        s = dlg_input('Additional margins (space separated).\nPrefix with "!" to save permamently.', str(s))
         if s is None: return
+        save = s.startswith('!')
+        if save:
+            s = s[1:]
+
         ed.set_prop(PROP_MARGIN_STRING, s)
         ed_bro(ed).set_prop(PROP_MARGIN_STRING, s)
-        apx.set_opt('margin_string', s)
+
+        if save:
+            apx.set_opt('margin_string', s)
+            ed.cmd(cmds.cmd_OpsReloadAndApply)
