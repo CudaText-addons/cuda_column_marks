@@ -42,6 +42,12 @@ def do_jump(is_next):
     ed.set_caret(x, y, x2, y2)
     msg_status('Jumped to column %d' % x)
 
+def is_valid_margins(s):
+    for ch in s:
+        if not ch in '1234567890 ':
+            return False
+    return True
+
 def ed_bro(ed):
     h_self = ed.get_prop(PROP_HANDLE_SELF)
     h_pri = ed.get_prop(PROP_HANDLE_PRIMARY)
@@ -84,6 +90,9 @@ class Command:
         save = s.startswith('!')
         if save:
             s = s[1:]
+
+        if not is_valid_margins(s):
+            return msg_status('Not valid list of integers: '+s)
 
         ed.set_prop(PROP_MARGIN_STRING, s)
         ed_bro(ed).set_prop(PROP_MARGIN_STRING, s)
