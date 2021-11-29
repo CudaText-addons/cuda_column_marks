@@ -1,4 +1,7 @@
 
+2021.11.29
++ add: i18n (by Markus)
+
 2021.11.28
 + add: improved prompt dialog which allows to prefix value with "!" to save option for good (thanks @newhoa)
 

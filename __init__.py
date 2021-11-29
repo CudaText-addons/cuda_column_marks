@@ -2,10 +2,13 @@ from cudatext import *
 import cudax_lib as apx
 import cudatext_cmd as cmds
 
+_ = apx.get_translation(__file__)  # I18N
+
+
 def do_jump(is_next):
     carets = ed.get_carets()
     if len(carets)>1:
-        msg_status('Need single caret')
+        msg_status(_('Need single caret'))
         return
     x, y, x2, y2 = carets[0]
 
@@ -36,11 +39,11 @@ def do_jump(is_next):
         x = s[-1] if s else -1
 
     if x<0:
-        msg_status('Cannot jump to mark')
+        msg_status(_('Cannot jump to mark'))
         return
 
     ed.set_caret(x, y, x2, y2)
-    msg_status('Jumped to column %d' % x)
+    msg_status(_('Jumped to column {}').format(x))
 
 def is_valid_margins(s):
     for ch in s:
@@ -66,7 +69,7 @@ class Command:
 
     def set_margin(self):
         s = ed.get_prop(PROP_MARGIN)
-        s = dlg_input('Fixed margin value.\nPrefix with "!" to save permamently.', str(s))
+        s = dlg_input(_('Fixed margin value.\nPrefix with "!" to save permamently.'), str(s))
         if s is None: return
         save = s.startswith('!')
         if save:
@@ -77,7 +80,7 @@ class Command:
             ed.set_prop(PROP_MARGIN, n)
             ed_bro(ed).set_prop(PROP_MARGIN, n)
         except:
-            return msg_status('Wrong integer value: '+s)
+            return msg_status(_('Wrong integer value: ')+s)
 
         if save:
             apx.set_opt('margin', n)
@@ -85,14 +88,14 @@ class Command:
 
     def set_margins(self):
         s = ed.get_prop(PROP_MARGIN_STRING)
-        s = dlg_input('Additional margins (space separated).\nPrefix with "!" to save permamently.', str(s))
+        s = dlg_input(_('Additional margins (space separated).\nPrefix with "!" to save permamently.'), str(s))
         if s is None: return
         save = s.startswith('!')
         if save:
             s = s[1:]
 
         if not is_valid_margins(s):
-            return msg_status('Not valid list of integers: '+s)
+            return msg_status(_('Not valid list of integers: ')+s)
 
         ed.set_prop(PROP_MARGIN_STRING, s)
         ed_bro(ed).set_prop(PROP_MARGIN_STRING, s)
