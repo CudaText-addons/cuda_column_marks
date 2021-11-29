@@ -23,7 +23,7 @@ def do_jump(is_next):
     #recalc if tab-chars present
     s2 = []
     for i in s:
-        ii, _ = ed.convert(CONVERT_COL_TO_CHAR, i, y, ed.get_text_line(y))
+        ii, ii2 = ed.convert(CONVERT_COL_TO_CHAR, i, y, ed.get_text_line(y))
         s2 += [ii]
     s = s2
 
